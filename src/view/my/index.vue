@@ -115,6 +115,18 @@
     <div class="shareImg">
       <compose-img ref="composeImg"></compose-img>
     </div>
+    <van-popup v-model="isSystem" class="system-box">
+      <div class="system-tips">
+        <div class="system-tips-header"></div>
+        <div class="system-tips-content">
+          <div class="system-tips-text">系统您已为您分配官方专属客服！</div>
+          <div class="system-tips-text">组多多客服微信：wx215452121</div>
+          <div class="system-tips-btn" id="systemBtn">复制微信号</div>
+          <div class="system-tips-detail">快去微信添加好友获取专属服务吧</div>
+        </div>
+        <img src="../../assets/code_close.png" class="system-tips-close" @click="isSystem = false">
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -144,7 +156,8 @@
       return {
         show: false,
         customerInfo: {},
-        info: {}
+        info: {},
+        isSystem: false
       }
     },
     methods: {
@@ -509,5 +522,61 @@
   }
   /deep/ .van-popup {
     background: transparent;
+  }
+  .system-box {
+    background: transparent;
+    overflow: inherit;
+    .system-tips {
+      position: relative;
+      width: 270px;
+      border-radius: 5px;
+      .system-tips-close {
+        position: absolute;
+        left: 50%;
+        bottom: -50px;
+        z-index: 99;
+        transform: translate(-50%, 0);
+        width: 36px;
+        height: 36px;
+      }
+      .system-tips-header {
+        width: 270px;
+        height: 93px;
+        background: url("../../assets/home_modal.png") no-repeat;
+        background-size: 270px 93px;
+      }
+      .system-tips-content {
+        padding: 30px 30px 20px 30px;
+        background: #fff;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        .system-tips-text {
+          font-size: 14px;
+          text-align: left;
+          color: #000;
+          word-break:break-all;
+          line-height: 18px;
+          &:first-child {
+            margin-bottom: 18px;
+          }
+        }
+        .system-tips-btn {
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          background: #6779FF;
+          color: #fff;
+          font-size: 15px;
+          border-radius: 5px;
+          margin-top: 25px;
+        }
+        .system-tips-detail {
+          color: #AFADDB;
+          font-size: 14px;
+          text-align: center;
+          margin-top: 15px;
+        }
+      }
+    }
   }
 </style>
