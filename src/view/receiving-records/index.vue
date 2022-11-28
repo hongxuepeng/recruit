@@ -9,12 +9,10 @@
             <div class="level-title">
                 <b>领取记录</b>
             </div>
-            <van-list
-                    v-model="loading"
-                    :finished="finished"
-                    finished-text="没有更多了"
-                    @load="onLoad"
-            >
+            <van-list v-model="loading"
+                      :finished="finished"
+                      finished-text="没有更多了"
+                      @load="onLoad">
                 <div class="level-list">
                     <van-row class="level-th">
                         <van-col span="8">提取时间</van-col>
@@ -22,12 +20,9 @@
                         <van-col span="8" class="level-right">领取金额</van-col>
                     </van-row>
                     <van-row class="level-td" v-for="(item, index) in list" :key="index">
-                        <van-col span="8">{{item.DrawTime}}</van-col>
-                        <van-col span="8" class="level-center">
-                            <span v-if="item.Desc">{{item.Desc}}</span>
-                            <span v-else>{{item.GrantTime}}</span>
-                        </van-col>
-                        <van-col span="8" class="level-right">{{item.DrawMoney}}元</van-col>
+                        <van-col span="8">{{item.applyTime}}</van-col>
+                        <van-col span="8" class="level-center">{{item.sendTime}}</van-col>
+                        <van-col span="8" class="level-right">{{item.money}}元</van-col>
                     </van-row>
                 </div>
             </van-list>
@@ -62,7 +57,7 @@
                 list: [],
                 loading: false,
                 finished: false,
-                pageIndex: 0,
+                pageIndex: 1,
                 pageSize: 20,
                 AllGrantMoney: ''
             }
@@ -71,35 +66,35 @@
             onClickLeft() {
                 this.$router.go(-1);
             },
-            onLoad() {
-                // 异步更新数据
-                this.finished = false;
-                this.pageIndex++;
-                this.getMyDiscountRecord();
-            },
-            getMyDiscountRecord() {
-                this.loading = true;
-                let params = {
-                    Guid: this.Guid,
-                    pageIndex: this.pageIndex,
-                    pageSize: this.pageSize
-                }
-                getMyDiscountRecord(params).then(res => {
-                    if (res.result == "1") {
-                        this.list = this.list.concat(res.data.mydiscounttecord);
-                        this.AllGrantMoney = res.data.AllGrantMoney;
-                        // 加载状态结束
-                        this.loading = false;
-                        // 数据全部加载完成
-                        if (res.data.mydiscounttecord.length < this.pageSize) {
-                            this.finished = true;
-                        }
+            async onLoad() {
+                try {
+                    let params = {
+                        agentGuid: this.Guid,
+                        pageIndex: this.pageIndex,
+                        pageSize: this.pageSize
                     }
-                });
+                    let res = await getMyDiscountRecord(params)
+                    if (+res.code === 1) {
+                        this.list = [...this.list, ...res.info.list]
+                        this.AllGrantMoney = res.info.withdrawBonus
+                        this.loading = false
+                        let totalPage = res.info.pageCount || 1
+                        if (this.pageIndex >= totalPage) {
+                            this.finished = true
+                            return
+                        }
+                        this.pageIndex++
+                    } else {
+                        this.loading = false
+                        this.finished = true
+                    }
+                } catch (e) {
+                    this.loading = false
+                    this.finished = true
+                }
             }
         },
         created() {
-
         },
         beforeRouteEnter (to, from, next) {
             window.document.body.style.backgroundColor = '#F5F5F5';

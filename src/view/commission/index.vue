@@ -129,10 +129,10 @@
         box-sizing: border-box;
         background-image: url("../../assets/commission_icon1.png");
         &.commission-box-2 {
-            background-image: url("../../assets/commission_icon1.png");
+            background-image: url("../../assets/commission_icon2.png");
         }
         &.commission-box-3 {
-            background-image: url("../../assets/commission_icon1.png");
+            background-image: url("../../assets/commission_icon3.png");
         }
         background-size: 50px 50px;
         background-repeat: no-repeat;

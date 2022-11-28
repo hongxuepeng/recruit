@@ -126,6 +126,11 @@ export const getAgentMsg = (params) => {
     return postRequest('/AgentAccount/GetAgentMsg', params)
 }
 
+// 获取佣金提现记录
+export const getMyDiscountRecord = (params) => {
+    return postRequest('/AccountReleve/GetMyDiscountList', params)
+}
+
 // 实名认证
 export const bindRealName = (params) => {
     return postRequest('/AgentAccount/RealName', params)
