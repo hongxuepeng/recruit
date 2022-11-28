@@ -107,7 +107,17 @@
         proName: '',
         phone: '',
         imgShow: false,
+        info: getStorage('info'),
         agentGuid: getStorage('agentGuid'),
+      }
+    },
+    mounted () {
+      if (this.info) {
+        const { name, idCard, wxchat, sex } = this.info
+        this.form.name = name
+        this.form.idCard = idCard
+        this.form.wxchat = wxchat
+        this.form.sex = sex
       }
     },
     methods: {

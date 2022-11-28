@@ -356,7 +356,7 @@
                 .van-col {
                     height: 38px;
                     line-height: 38px;
-                    font-size: 12px;
+                    font-size: 11px;
                     border-bottom: 1px solid #f5f5f5;
                     overflow: hidden;
                     text-overflow:ellipsis;

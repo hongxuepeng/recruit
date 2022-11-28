@@ -46,6 +46,11 @@
         align-items: center;
       }
     }
+    &.register-bg {
+      background: url("assets/bg_register.png") no-repeat;
+      background-size:100% 100%;
+      background-attachment:fixed;
+    }
   }
   *{
     box-sizing: border-box;

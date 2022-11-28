@@ -24,7 +24,7 @@
                                 size="small"
                                 plain
                                 round
-                                color="#1976FA"
+                                color="#FF6409"
                                 type="primary"
                                 @click="checkSend"
                                 v-if="!codeDisabled">{{codeText}}</van-button>
@@ -33,7 +33,7 @@
                                 plain
                                 disabled
                                 round
-                                color="#1976FA"
+                                color="#FF6409"
                                 type="primary"
                                 v-else>
                         <van-count-down ref="countDown" :time="time" :auto-start="false" @finish="finished">
@@ -49,7 +49,7 @@
             <div class="login-btn">
                 <van-button size="large"
                             round
-                            color="#1976FA"
+                            color="#FF6409"
                             @click="registerCheck"
                             v-if="!loading">马上加入</van-button>
                 <van-button size="large"
@@ -57,7 +57,7 @@
                             loading-text="马上加入."
                             disabled
                             round
-                            color="#1976FA"
+                            color="#FF6409"
                             v-else></van-button>
             </div>
             <div class="login-btn-tips">已有账号,去<span @click="$router.push('login')">登录</span>？</div>
@@ -183,7 +183,7 @@
         created() {
         },
         beforeRouteEnter (to, from, next) {
-            window.document.body.className = 'screen login-bg';
+            window.document.body.className = 'screen login-bg register-bg';
             next();
         },
         beforeRouteLeave (to, from, next) {
@@ -279,7 +279,7 @@
         text-align: center;
         margin-top: 16px;
         span {
-            color: #1976FA;
+            color: #FF6409;
         }
     }
     .van-cell {

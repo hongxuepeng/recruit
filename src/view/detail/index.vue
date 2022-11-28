@@ -31,7 +31,7 @@
       <div class="recruit-detail-field" v-if="info.companyAddress">
         <div class="recruit-detail-field-img"><img src="../../assets/location_icon.png" alt=""></div>
         <div class="recruit-detail-field-name">{{info.companyAddress}}</div>
-        <img src="../../assets/right.png" alt="">
+<!--        <img src="../../assets/right.png" alt="">-->
       </div>
     </div>
     <div class="recruit-detail-html" v-html="info.detail"></div>
