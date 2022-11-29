@@ -17,7 +17,9 @@
         </div>
         <div class="recruit-detail-money">{{info.startLimit}}-{{info.endLimit}}元/月</div>
         <ul class="recruit-detail-tags">
-          <li class="red van-hairline--surround">热招</li>
+          <li class="rvan-hairline--surround"
+              :class="info.recruitmentName === '停招' ? 'gray' : 'red'"
+              v-if="info.recruitmentName">{{info.recruitmentName}}</li>
           <li class="van-hairline--surround"
               v-for="item in info.lablelist"
               :key="item">{{item}}</li>
@@ -83,7 +85,7 @@
     getProductDetails,
     getProductDetailsAgentMsg
   } from "@/api/index";
-  import { copyLink, getSessionStorage } from '@/libs/utils';
+  import { copyLink, getSessionStorage, getStorage } from '@/libs/utils';
   import PosterImg from '@/components/posterImg';
   import {
     Overlay,
@@ -111,6 +113,7 @@
         show: false,
         info: {},
         agentInfo: {},
+        agentGuid: getStorage('agentGuid'),
         invitorGuid: getSessionStorage('parentAgentGuid')
       }
     },
@@ -130,7 +133,7 @@
       },
       async getProductDetailsAgentMsg () {
         let res = await getProductDetailsAgentMsg({
-          invitorGuid: this.invitorGuid
+          invitorGuid: this.invitorGuid || this.agentGuid
         })
         if (+res.code === 1) {
           this.agentInfo = res.info
@@ -227,6 +230,7 @@
         margin-top: 15px;
         flex-wrap: wrap;
         li {
+          position: relative;
           height: 16px;
           line-height: 16px;
           padding: 0 4px;
@@ -245,6 +249,18 @@
             background-color: #FDF4EB;
             &::after {
               border-color: #F3C79B;
+              border-width: 1px;
+            }
+          }
+          &.gray {
+            color: #666666;
+            padding-left: 16px;
+            background: url("../../assets/home/gray.png") no-repeat center left 4px;
+            background-size: 8px 10px;
+            background-color:#EEEEEE;
+            &::after {
+              border-color:  #AAAAAA;
+              border-width: 1px;
             }
           }
         }
@@ -279,11 +295,19 @@
         }
       }
     }
-    .recruit-detail-html {
+    /deep/ .recruit-detail-html {
       margin-top: 8px;
       font-size: 14px;
       background-color: #FFFFFF;
       padding: 16px;
+      h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+      dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+      pre, /* text formatting elements 文本格式元素 */
+      fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+      th, td { /* table elements 表格元素 */
+        margin: 0;
+        padding: 0;
+      }
     }
     .recruit-detail-footer {
       position: fixed;

@@ -110,6 +110,15 @@
           <img src="@/assets/right.png">
         </div>
       </li>
+      <li @click="handleCustomer">
+        <div class="person-list-img">
+          <img src="@/assets/home/home_icon_8.png">
+        </div>
+        <div class="person-list-title">
+          <div>我的专属客服</div>
+          <img src="@/assets/right.png">
+        </div>
+      </li>
     </ul>
     <div class="person-logout" @click="logout">退出登录</div>
     <div class="shareImg">
@@ -120,8 +129,8 @@
         <div class="system-tips-header"></div>
         <div class="system-tips-content">
           <div class="system-tips-text">系统您已为您分配官方专属客服！</div>
-          <div class="system-tips-text">组多多客服微信：wx215452121</div>
-          <div class="system-tips-btn" id="systemBtn">复制微信号</div>
+          <div class="system-tips-text">客服电话：{{info.customer}}（同微信）</div>
+          <div class="system-tips-btn" id="systemBtn" @click="copyCustomer">复制微信号</div>
           <div class="system-tips-detail">快去微信添加好友获取专属服务吧</div>
         </div>
         <img src="../../assets/code_close.png" class="system-tips-close" @click="isSystem = false">
@@ -132,7 +141,7 @@
 
 <script>
   import composeImg from '@/components/shareImg.vue'
-  import { clearUserCookie, saveUserInfo } from '@/libs/utils';
+  import { clearUserCookie, saveUserInfo, copyLink } from '@/libs/utils';
   import { getAgentMsg } from "@/api/index";
   import {
     Popup,
@@ -140,7 +149,8 @@
     Dialog,
     Button,
     Col,
-    Row
+    Row,
+    Toast
   } from 'vant';
   export default {
     components: {
@@ -150,6 +160,7 @@
       [Button .name]: Button,
       [Col .name]: Col,
       [Row .name]: Row,
+      [Toast .name]: Toast,
       composeImg
     },
     data() {
@@ -211,7 +222,7 @@
       },
       async bindInfo () {
         let res = await getAgentMsg()
-        this.info = res.info
+        this.info = res.info || {}
         saveUserInfo(res.info);
       },
       handleAchievement (type) {
@@ -222,6 +233,13 @@
             source: 'my'
           }
         })
+      },
+      handleCustomer () {
+        this.isSystem = true
+      },
+      copyCustomer () {
+        copyLink(this.info.customer)
+        Toast.success('复制成功');
       }
     },
     created () {
@@ -546,14 +564,14 @@
         background-size: 270px 93px;
       }
       .system-tips-content {
-        padding: 30px 30px 20px 30px;
+        padding: 30px 16px 20px 16px;
         background: #fff;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         .system-tips-text {
           font-size: 14px;
-          text-align: left;
-          color: #000;
+          text-align: center;
+          color: #666666;
           word-break:break-all;
           line-height: 18px;
           &:first-child {
@@ -564,15 +582,15 @@
           height: 40px;
           line-height: 40px;
           text-align: center;
-          background: #6779FF;
+          background: #1976FA;
           color: #fff;
           font-size: 15px;
-          border-radius: 5px;
+          border-radius: 20px;
           margin-top: 25px;
         }
         .system-tips-detail {
-          color: #AFADDB;
-          font-size: 14px;
+          color: #999999;
+          font-size: 13px;
           text-align: center;
           margin-top: 15px;
         }

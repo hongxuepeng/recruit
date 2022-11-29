@@ -51,10 +51,12 @@
                     <div>{{item.startLimit}}-{{item.endLimit}}元/月</div>
                     <div class="van-ellipsis">{{item.station}}</div>
                   </div>
-                  <ul class="recruit-home-item-tags">
-                    <li class="red van-hairline--surround">热招</li>
+                  <ul class="recruit-home-item-tags van-ellipsis">
                     <li class="van-hairline--surround"
-                        v-for="v in getTags(item.lablelist)"
+                        :class="item.recruitmentName === '停招' ? 'gray' : 'red'"
+                        v-if="item.recruitmentName">{{item.recruitmentName}}</li>
+                    <li class="van-hairline--surround"
+                        v-for="v in getTags(item.lablelist, item.recruitmentName)"
                         :key="v + index">{{v}}</li>
                   </ul>
                   <div class="recruit-home-item-address van-ellipsis">{{item.companyName}}</div>
@@ -176,6 +178,8 @@
         this.pageIndex = 1
         this.list = []
         this.finished = false
+        this.loading = true
+        this.onLoad()
       },
       /**
        * 查看详情
@@ -223,8 +227,9 @@
           this.gridList = res.info
         }
       },
-      getTags (tags = []) {
-        return tags.length > 2 ? tags.slice(0, 2) : tags
+      getTags (tags = [], recruitmentName) {
+        let num = recruitmentName ? 2 : 3
+        return tags.length > num ? tags.slice(0, num) : tags
       },
       handleGrid (groupGuid) {
         this.groupGuid = groupGuid
@@ -359,6 +364,8 @@
             display: flex;
             font-size: 10px;
             margin-top: 8px;
+            height: 18px;
+            align-items: center;
             li {
               height: 16px;
               line-height: 16px;
@@ -380,6 +387,16 @@
                 background-color: #FDF4EB;
                 &::after {
                   border-color: #F3C79B;
+                }
+              }
+              &.gray {
+                color: #666666;
+                padding-left: 16px;
+                background: url("../../assets/home/gray.png") no-repeat center left 4px;
+                background-size: 8px 10px;
+                background-color:#EEEEEE;
+                &::after {
+                  border-color:  #AAAAAA;
                 }
               }
             }
