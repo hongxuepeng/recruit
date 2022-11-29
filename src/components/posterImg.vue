@@ -4,7 +4,7 @@
       <div class="poster-company">{{info.companyName}}</div>
       <div class="poster-money">{{info.startLimit}}~{{info.endLimit}}元/月</div>
       <div class="poster-detail">
-        <div class="poster-detail-title">操作工</div>
+        <div class="poster-detail-title">{{info.station}}</div>
         <ul class="poster-detail-item">
           <li><span>特点：</span>{{info.lables}}</li>
           <li v-if="info.companyAddress"><span>地址：</span>{{info.companyAddress}}</li>

@@ -62,7 +62,7 @@
                   <div class="recruit-home-item-address van-ellipsis">{{item.companyName}}</div>
                 </div>
               </div>
-              <div class="van-ellipsis recruit-home-item-tips">{{item.model}}</div>
+              <div class="van-ellipsis recruit-home-item-tips">模式：{{item.model}}</div>
               <div class="van-hairline--bottom"></div>
             </div>
             <div class="recruit-home-item-footer">
