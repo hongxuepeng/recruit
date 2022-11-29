@@ -10,7 +10,7 @@
           <li v-if="info.companyAddress"><span>地址：</span>{{info.companyAddress}}</li>
         </ul>
         <div class="poster-detail-title">职位福利</div>
-        <ul class="poster-detail-item">
+        <ul class="poster-detail-item" v-if="info.model">
           <li><span>模式：</span>{{info.model}}</li>
         </ul>
       </div>
