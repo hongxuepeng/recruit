@@ -206,7 +206,7 @@
     }
     .header {
         font-size: 30px;
-        line-height: 50px;
+        line-height: 45px;
         font-weight: 400;
         color: #FFFFFF;
         text-align: center;
