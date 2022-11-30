@@ -84,7 +84,7 @@
 </template>
 
 <script>
-  import { wexinShare, getStorage } from '@/libs/utils';
+  import { wexinShare, getStorage, isIos, getSessionStorage } from '@/libs/utils';
   import {
     getProductGroup,
     getProductList,
@@ -195,7 +195,8 @@
       },
       async handleShare (item) {
         let domain = document.domain;
-        let res = await getSignature({ url: `${window.location.href}` })
+        const url = isIos ? getSessionStorage('iosUrl') : window.location.href
+        let res = await getSignature({ url })
         if (+res.code !== 1) return
         //微信加签
         const obj = {

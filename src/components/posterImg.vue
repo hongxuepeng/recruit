@@ -6,10 +6,10 @@
       <div class="poster-detail">
         <div class="poster-detail-title">{{info.station}}</div>
         <ul class="poster-detail-item">
-          <li><span>特点：</span>{{info.lables}}</li>
+          <li><span>优势：</span>{{info.lables}}</li>
           <li v-if="info.companyAddress"><span>地址：</span>{{info.companyAddress}}</li>
         </ul>
-        <div class="poster-detail-title">职位福利</div>
+        <div class="poster-detail-title">薪资</div>
         <ul class="poster-detail-item" v-if="info.model">
           <li><span>模式：</span>{{info.model}}</li>
         </ul>

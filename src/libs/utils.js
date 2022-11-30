@@ -148,3 +148,11 @@ export function copyLink (value) {
     }
 }
 
+export function isIos () {
+    let u = navigator.userAgent;
+    let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+    if (isiOS) {
+        return true
+    }
+    return false
+}

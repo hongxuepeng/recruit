@@ -1,9 +1,12 @@
 <template>
     <div class="login">
-        <div class="header">线上面试人才招募</div>
+        <div class="header">
+            <div>欢迎加入</div>
+            <div>河南同协人力</div>
+        </div>
         <div class="header-tips">
-            <span>线上直招</span>
-            <span>更多职位</span>
+            <span>客户永久绑定</span>
+            <span>躺平拿收益</span>
         </div>
         <div class="login-form">
             <van-cell-group>
@@ -149,7 +152,7 @@
                         path: redirect
                     });
                 } else {
-                    this.$router.push('index');
+                    this.$router.push('my');
                 }
             },
             finished() {
@@ -195,17 +198,24 @@
 
 <style lang="less" scoped>
     .login {
+        position: relative;
+        top: -20px;
         width: 100%;
         font-size: 16px;
         padding: 0 22px;
     }
     .header {
         font-size: 30px;
-        line-height: 30px;
+        line-height: 50px;
         font-weight: 400;
         color: #FFFFFF;
         text-align: center;
         padding-bottom: 30px;
+        & > div {
+            &:first-child {
+                font-size: 24px;
+            }
+        }
     }
     .header-tips {
         display: flex;
