@@ -35,6 +35,7 @@
                 loadCode: false,
                 shareShow: false,
                 Phone: '',
+                wxchat: ''
             }
         },
         watch:{
@@ -65,6 +66,7 @@
             changeMobile() {
                 let info = getStorage('info')
                 this.Phone = info.phone
+                this.wxchat = info.wxchat
                 // tel = "" + tel;
                 // let reg = /(\d{3})\d{4}(\d{4})/;
                 // this.Phone = tel.replace(reg, "$1****$2")
@@ -98,9 +100,16 @@
                 ctx.font = "30px Source Han Sans CN";
                 ctx.textAlign = 'center';
                 ctx.fillText(`√ 客户永久锁定，享多次收益`, 380, 436);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.font = "30px Source Han Sans CN";
+                ctx.fillStyle = "#FFD3B7";
+                ctx.font = "34px Microsoft YaHei";
                 ctx.textAlign = 'center';
+                ctx.fillText("电话 " + this.Phone, 380, 900);
+                if (this.wxchat) {
+                    ctx.fillStyle = "#FFD3B7";
+                    ctx.font = "34px Microsoft YaHei";
+                    ctx.textAlign = 'center';
+                    ctx.fillText(`微信号 ${this.wxchat}`, 380, 958);
+                }
                 ctx.fillRect(234, 544, 292, 292);
                 ctx.drawImage(qrcodeImg, 240, 550, 280, 280);
                 hc_image.src = c.toDataURL("image/png");

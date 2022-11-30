@@ -113,6 +113,7 @@
     width: 544px;
     background: url("../assets/bg_poster.png") no-repeat;
     background-size: 100% 100%;
+    background-color: #2D4FA1;
     padding-top: 104px;
     padding-bottom: 46px;
     .poster-company {
@@ -209,6 +210,7 @@
     transform: translate(-50%, -50%);
     .share-img-url {
       width: 100%;
+      border-radius: 8px;
     }
     .share-close {
       position: absolute;

@@ -262,7 +262,7 @@ router.beforeEach((to, from, next) => {
         // 判断是否已经登录激活且前往的是登录页或者注册页或忘记密码页或激活重置密码页
         setTitle(title)
         next({
-            name: 'index'
+            name: 'my'
         })
     } else {
         setTitle(title)

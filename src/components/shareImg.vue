@@ -35,6 +35,7 @@
                 loadCode: false,
                 shareShow: false,
                 Phone: '',
+                wxchat: ''
             }
         },
         watch:{
@@ -65,6 +66,7 @@
             changeMobile() {
                 let info = getStorage('info')
                 this.Phone = info.phone
+                this.wxchat = info.wxchat
                 // tel = "" + tel;
                 // let reg = /(\d{3})\d{4}(\d{4})/;
                 // this.Phone = tel.replace(reg, "$1****$2")
@@ -101,11 +103,13 @@
                 ctx.fillStyle = "#7882E0";
                 ctx.font = "34px Microsoft YaHei";
                 ctx.textAlign = 'center';
-                ctx.fillText(`推荐人 ${that.Phone}`, 380, 929);
-                // ctx.fillStyle = "#7882E0";
-                // ctx.font = "34px Microsoft YaHei";
-                // ctx.textAlign = 'center';
-                // ctx.fillText(`微信号 yyess023`, 380, 978);
+                ctx.fillText(`电话 ${that.Phone}`, 380, 929);
+                if (this.wxchat) {
+                    ctx.fillStyle = "#7882E0";
+                    ctx.font = "34px Microsoft YaHei";
+                    ctx.textAlign = 'center';
+                    ctx.fillText(`微信号 ${this.wxchat}`, 380, 978);
+                }
                 ctx.fillStyle = "#CCCCCC";
                 ctx.font = "30px Microsoft YaHei";
                 ctx.textAlign = 'center';

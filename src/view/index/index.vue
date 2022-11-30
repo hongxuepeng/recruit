@@ -316,7 +316,7 @@
           display: none;
         }
         img {
-          height: 24px;
+          height: 30px;
           width: auto;
           margin-bottom: 14px;
         }
