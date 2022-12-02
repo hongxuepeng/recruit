@@ -10,6 +10,7 @@
             </van-swipe-item>
           </van-swipe>
           <div class="recruit-detail-person">{{info.applyCount}}人已申请</div>
+          <div class="recruit-detail-person-right" @click="handleList">企业中心</div>
         </div>
         <div class="recruit-detail-company-name">
           <span>{{info.productname}}</span>
@@ -145,6 +146,9 @@
       handleEnroll () {
         this.$router.push(`/enroll/${this.info.productId}`);
       },
+      handleList () {
+        this.$router.push(`/index`);
+      }
     },
     created () {
       this.getProductDetails()
@@ -197,6 +201,18 @@
           padding: 0 10px;
           height: 20px;
           line-height: 20px;
+        }
+        .recruit-detail-person-right {
+          position: absolute;
+          right: 0;
+          top: 28px;
+          background-color: #1976FA;
+          color: #FFFFFF;
+          font-size: 12px;
+          border-radius: 16px 0 0 16px;
+          padding: 0 16px;
+          height: 32px;
+          line-height: 32px;
         }
       }
       .recruit-detail-company-name {
