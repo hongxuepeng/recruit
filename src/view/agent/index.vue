@@ -79,7 +79,8 @@
         Toast,
         Search,
         Icon,
-        Dialog
+        Dialog,
+        Notify
     } from 'vant';
     import {
         getMyProxyCount,
@@ -97,6 +98,7 @@
             [Search.name]: Search,
             [Icon.name]: Icon,
             [Dialog.name]: Dialog,
+            [Notify.name]: Notify,
             composeImg
         },
         data() {
@@ -171,6 +173,10 @@
                 });
             },
             codeShow() {
+                const { isInviteAgent } = this.info
+                if (+isInviteAgent === 0) {
+                    return Notify('对不起，您目前还没有权限，请联系您的专属客服申请！')
+                }
                 this.$refs.composeImg.loadImg();
                 // if (!this.info.name) {
                 //     Dialog.confirm({
